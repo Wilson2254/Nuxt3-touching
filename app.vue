@@ -1,5 +1,5 @@
 <template>
   <div>
-    <NuxtWelcome />
+    <q-btn color="primary" label="Primary" />
   </div>
 </template>
