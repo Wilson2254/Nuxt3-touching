@@ -9,15 +9,15 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@types/node": "^18",
+    "@types/node": "^18.16.5",
     "cross-env": "^7.0.3",
     "nuxt": "^3.4.3",
     "nuxt-quasar-ui": "^1.7.3"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
     "@quasar/extras": "^1.16.3",
-    "cookie-universal-nuxt": "^2.2.2",
+    "normalize.css": "^8.0.1",
+    "nuxt-lazy-hydrate": "^0.1.0",
     "quasar": "^2.11.10"
   }
 }
