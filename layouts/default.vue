@@ -1,7 +1,9 @@
 <template>
-  Header
-  <slot/>
-  Footer
+  <main class="q-pa-lg">
+    Шапочка
+    <slot/>
+    Подвальчик
+  </main>
 </template>
 
 
