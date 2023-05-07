@@ -9,7 +9,16 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@types/node": "^18",
-    "nuxt": "^3.4.3"
+    "@types/node": "^18.16.5",
+    "cross-env": "^7.0.3",
+    "nuxt": "^3.4.3",
+    "nuxt-quasar-ui": "^1.7.3",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.3",
+    "normalize.css": "^8.0.1",
+    "nuxt-lazy-hydrate": "^0.1.0",
+    "quasar": "^2.11.10"
   }
 }
