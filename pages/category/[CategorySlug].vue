@@ -4,7 +4,7 @@
     <div class="product-container">
       <product-brief
         class="col-2"
-        v-for="item in data"
+        v-for="item in products"
         :key="item.id"
         :product="item"
       />
@@ -16,16 +16,16 @@
 const route = useRoute();
 const currentCategory = route.params.CategorySlug;
 const { data } = await useAsyncData(() =>
-  $fetch(
-    `https://jsonplaceholder.typicode.com/photos?albumId=${currentCategory}`
-  )
+  $fetch(`https://dummyjson.com/products/category/${currentCategory}`)
 );
+
+const { total, products } = data.value;
 
 useHead(() => ({
   title: `Категория-${currentCategory}`,
 }));
 
-if (!data.value.length) {
+if (!total) {
   throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
 }
 </script>

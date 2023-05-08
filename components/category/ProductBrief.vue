@@ -1,7 +1,7 @@
 <template>
   <div>
-    <q-card class="product">
-      <q-img class="image" :src="url">
+    <q-card class="product" @click="openProductPage">
+      <q-img class="image" :src="thumbnail">
         <div class="absolute-bottom text-subtitle2 text-center">
           {{ title }}
         </div>
@@ -18,7 +18,12 @@ const props = defineProps({
   },
 });
 
-const { id, title, url } = toRefs(props.product);
+const { id, title, thumbnail } = toRefs(props.product);
+
+const router = useRouter();
+const openProductPage = () => {
+  router.push(`/product/${id.value}`);
+};
 </script>
 
 <style scoped>

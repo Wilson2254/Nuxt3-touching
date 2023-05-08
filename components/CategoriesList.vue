@@ -3,14 +3,14 @@
   <div class="categories-container">
     <q-card
       class="col cursor-pointer card"
-      v-for="{ id, title, img } in categoriesWithPhoto"
-      :key="id"
-      @click="openCategoryPage(id)"
+      v-for="{ category, img } in categoriesWithPhoto"
+      :key="category"
+      @click="openCategoryPage(category)"
     >
       <q-img class="image" :src="img">
         <div class="text-subtitle2 absolute-top text-center">
-          <nuxt-link class="title" :to="`/category/${id}`">
-            Категория - {{ id }}
+          <nuxt-link class="title" :to="`/category/${category}`">
+            Категория - "{{ category }}"
           </nuxt-link>
         </div>
       </q-img>
@@ -29,18 +29,20 @@ const props = defineProps({
 
 const categoriesWithPhoto = computed(() => {
   return props.categories.map((item) => {
+    const resultItem = {};
     const backGroundColor = getColor();
     const textColor = getColor();
-    item.img = `https://placehold.co/600x400/${backGroundColor}/${textColor}/?text=${item.title}`;
-    return item;
+    resultItem.img = `https://placehold.co/600x400/${backGroundColor}/${textColor}/?text=${item}`;
+    resultItem.category = item;
+    return resultItem;
   });
 });
 
 const getColor = () =>
   [...Array(3)].map(() => Math.floor(Math.random() * 16).toString(16)).join("");
 
-const openCategoryPage = (id) => {
-  router.push(`/category/${id}`);
+const openCategoryPage = (item) => {
+  router.push(`/category/${item}`);
 };
 </script>
 
