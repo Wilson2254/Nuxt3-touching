@@ -5,6 +5,7 @@
       <div class="product__title">
         <h1>{{ title }}</h1>
         <p>Цена: {{ price }}</p>
+        <BuyButton :id="id" :title="title" />
       </div>
     </div>
     <h2>Описание</h2>
@@ -19,7 +20,7 @@ const { data } = await useAsyncData(() =>
   $fetch(`https://dummyjson.com/products/${currentProduct}`)
 );
 
-const { title, price, description, thumbnail } = data.value;
+const { title, price, description, thumbnail, id } = data.value;
 
 const { changeCrumb } = useBreadcrumbs();
 changeCrumb({ title, url: route.path });

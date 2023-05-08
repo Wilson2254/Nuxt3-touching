@@ -2,6 +2,7 @@
   "compilerOptions": {
     "types": [
       "@nuxt/types",
+      "@nuxtjs/universal-storage"
     ]
   },
   // https://nuxt.com/docs/guide/concepts/typescript

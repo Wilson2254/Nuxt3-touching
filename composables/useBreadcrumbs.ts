@@ -1,6 +1,11 @@
-let crumbs = ref([{ title: "Главная", url: "/" }]);
+type Breadcrumbs = {
+  title: string;
+  url: string;
+};
 
-function changeCrumb(crumb) {
+let crumbs: Array<Breadcrumbs> = ref([{ title: "Главная", url: "/" }]);
+
+function changeCrumb(crumb: Breadcrumbs) {
   const existingCrumbIndex = crumbs.value.findIndex(
     (item) => crumb.title === item.title
   );
