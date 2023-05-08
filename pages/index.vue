@@ -10,4 +10,7 @@ const { data } = await useAsyncData(() =>
   $fetch("https://dummyjson.com/products/categories")
 );
 const categories = data.value;
+
+const { changeCrumb } = useBreadcrumbs();
+changeCrumb({ title: "Главная", url: "/" });
 </script>

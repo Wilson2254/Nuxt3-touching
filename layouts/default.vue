@@ -1,25 +1,15 @@
 <template>
   <q-layout class="layout" view="lHh lpr lFf">
-    <q-header
-      bordered
-      reveal
-      class="bg-grey-3 text-h4 text-black text-center q-py-sm"
-    >
-      Хвостики
-    </q-header>
+    <the-header />
+    <the-breadcrumbs />
     <slot />
-    <q-footer
-      class="bg-grey-3 text-h4 text-black text-center q-py-sm"
-      reveal
-      bordered
-    >
-      Мы в соцсетях
-    </q-footer>
+    <the-footer />
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from "quasar";
+import TheHeader from "~/components/TheHeader.vue";
+import TheFooter from "~/components/TheFooter.vue";
 const route = useRoute();
 
 useHead(() => ({
