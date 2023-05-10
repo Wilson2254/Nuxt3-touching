@@ -1,6 +1,9 @@
+//TODO: переделать костыльную реализацию (криво отрабатывает при перезагрузки страницы)
+
 type Breadcrumbs = {
   title: string;
   url: string;
+  category?: string;
 };
 
 let crumbs: Array<Breadcrumbs> = ref([{ title: "Главная", url: "/" }]);

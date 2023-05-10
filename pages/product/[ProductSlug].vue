@@ -5,22 +5,36 @@
       <div class="product__title">
         <h1>{{ title }}</h1>
         <p>Цена: {{ price }}</p>
-        <BuyButton :id="id" :title="title" />
+        <ClientOnly>
+          <BuyButton :id="id" :title="title" />
+        </ClientOnly>
       </div>
     </div>
     <h2>Описание</h2>
     <p>{{ description }}</p>
   </div>
+  <h3>С этим товаром также покупают</h3>
+  <ProdutcsList :products="alsoBuyProducts.products" />
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
 const currentProduct = route.params.ProductSlug;
-const { data } = await useAsyncData(() =>
-  $fetch(`https://dummyjson.com/products/${currentProduct}`)
-);
+let productData = ref({});
+let alsoBuyProducts = ref({});
 
-const { title, price, description, thumbnail, id } = data.value;
+await useAsyncData(async () => {
+  try {
+    [productData.value, alsoBuyProducts.value] = await Promise.all([
+      $fetch(`https://dummyjson.com/products/${currentProduct}`),
+      $fetch("https://dummyjson.com/products/category/motorcycle"),
+    ]);
+  } catch (error) {
+    console.warn(error);
+  }
+});
+
+const { title, price, description, thumbnail, id } = productData.value;
 
 const { changeCrumb } = useBreadcrumbs();
 changeCrumb({ title, url: route.path });
@@ -29,7 +43,7 @@ useHead(() => ({
   title: title,
 }));
 
-if (!data.value) {
+if (!productData.value) {
   throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
 }
 </script>

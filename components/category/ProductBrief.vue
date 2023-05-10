@@ -7,6 +7,7 @@
         </div>
       </q-img>
     </q-card>
+    <ClientOnly> <BuyButton :id="id" :title="title" /></ClientOnly>
   </div>
 </template>
 

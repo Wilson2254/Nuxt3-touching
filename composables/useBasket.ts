@@ -13,7 +13,7 @@ function addToBasket(product: BasketItem) {
 
 function removeFromBasket(id: number) {
   const existingProductIndex = basketStorage.value.findIndex(
-    (item) => id === item.id
+    (item) => id.value === item.id
   );
   basketStorage.value.splice(existingProductIndex, 1);
   localStorage.setItem("testBasket", JSON.stringify(basketStorage.value));
