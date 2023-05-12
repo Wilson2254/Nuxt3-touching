@@ -6,27 +6,32 @@
     :label="productInBasket ? 'Удалить из корзины' : 'Положить в корзину'"
     @click="basketAction"
   />
+  <q-btn
+    @click="modalOpen"
+    v-if="productInBasket"
+    push
+    :color="'blue'"
+    text-color="white"
+    :label="'Корзина'"
+  />
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
-  id: {
-    type: Number,
-    required: true,
-  },
-  title: {
-    type: String,
+  product: {
+    type: Object,
     required: true,
   },
 });
 
-const { id, title } = toRefs(props);
+const { id } = toRefs(props.product);
 
 const { basketStorage, addToBasket, removeFromBasket } = useBasket();
+const { modalOpen } = useModal();
 
 const productInBasket = computed(() => {
   const existingProductIndex = basketStorage.value.findIndex(
-    (item) => props.id === item.id
+    (item) => id.value === item.id
   );
   return existingProductIndex !== -1;
 });
@@ -36,8 +41,6 @@ function basketAction() {
     removeFromBasket(id);
     return;
   }
-  addToBasket({ title, id });
+  addToBasket(props.product);
 }
 </script>
-
-<style scoped></style>

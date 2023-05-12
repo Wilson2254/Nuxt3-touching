@@ -1,17 +1,17 @@
 <template>
   <div class="products-list">
-    <div v-for="{ id, thumbnail, title } in products" :key="id">
+    <div v-for="item in products" :key="item.id">
       <q-card>
-        <q-img class="image" :src="thumbnail">
+        <q-img class="image" :src="item.thumbnail">
           <div class="text-h5 absolute-bottom text-right">
-            <nuxt-link class="title" :to="`/product/${id}`">
-              {{ title }}
+            <nuxt-link class="title" :to="`/product/${item.id}`">
+              {{ item.title }}
             </nuxt-link>
           </div>
         </q-img>
       </q-card>
       <ClientOnly>
-        <BuyButton :id="id" :title="title" />
+        <BuyButton :product="item" />
       </ClientOnly>
     </div>
   </div>
