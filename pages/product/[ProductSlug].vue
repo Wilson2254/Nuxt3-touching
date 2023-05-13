@@ -6,7 +6,7 @@
         <h1>{{ title }}</h1>
         <p>Цена: {{ price }}</p>
         <ClientOnly>
-          <BuyButton :id="id" :title="title" />
+          <BuyButton :product="productData" />
         </ClientOnly>
       </div>
     </div>

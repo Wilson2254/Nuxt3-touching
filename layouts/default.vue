@@ -1,15 +1,16 @@
 <template>
   <q-layout class="layout" view="lHh lpr lFf">
     <the-header />
-    <the-breadcrumbs />
+    <!--    <the-breadcrumbs />-->
     <slot />
     <the-footer />
   </q-layout>
+  <ClientOnly>
+    <CartModal />
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
-import TheHeader from "~/components/TheHeader.vue";
-import TheFooter from "~/components/TheFooter.vue";
 const route = useRoute();
 
 useHead(() => ({

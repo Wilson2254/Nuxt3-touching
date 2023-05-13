@@ -1,12 +1,22 @@
 type BasketItem = {
-  title: string;
   id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: Array<string>;
 };
 
 const localStorageBasket = JSON.parse(localStorage.getItem("testBasket")) || [];
 const basketStorage: Array<BasketItem> = ref(localStorageBasket);
 
 function addToBasket(product: BasketItem) {
+  product.buyCount = 1;
   basketStorage.value.push(product);
   localStorage.setItem("testBasket", JSON.stringify(basketStorage.value));
 }
