@@ -1,42 +1,7 @@
-# Nuxt 3 Minimal Starter
+# Реализация серии статей по Nuxt2 https://habr.com/ru/articles/490496/ на Nuxt3 + Quasar + TS
+# Запуск через docker compose
+# `docker-compose up`
+# Запуск клиентской части без server HRM
+# `docker run -d -p 3000:3000 --rm --name nuxt3-app frontendalex/nuxt3-app:latest`
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
