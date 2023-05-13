@@ -6,14 +6,6 @@
     :label="productInBasket ? 'Удалить из корзины' : 'Положить в корзину'"
     @click="basketAction"
   />
-  <q-btn
-    @click="modalOpen"
-    v-if="productInBasket"
-    push
-    :color="'blue'"
-    text-color="white"
-    :label="'Корзина'"
-  />
 </template>
 
 <script setup lang="ts">
@@ -42,5 +34,6 @@ function basketAction() {
     return;
   }
   addToBasket(props.product);
+  modalOpen();
 }
 </script>

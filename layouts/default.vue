@@ -1,7 +1,7 @@
 <template>
   <q-layout class="layout" view="lHh lpr lFf">
     <the-header />
-    <the-breadcrumbs />
+    <!--    <the-breadcrumbs />-->
     <slot />
     <the-footer />
   </q-layout>

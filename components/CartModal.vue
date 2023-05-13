@@ -1,50 +1,12 @@
 <template>
-  <q-dialog v-model="isModalOpen">
+  <q-dialog v-model="isModalOpen" @hide="modalHide">
     <q-list class="products-list" bordered padding v-if="basketStorage.length">
-      <template
-        v-for="{
-          id,
-          thumbnail,
-          title,
-          description,
-          discountPercentage,
-          price,
-        } in basketStorage"
-        :key="id"
-      >
+      <template v-for="(item, index) in basketStorage" :key="index">
         <q-separator spaced />
-        <q-item>
-          <q-item-section top avatar class="items-center">
-            <q-avatar size="xl">
-              <img :src="thumbnail" />
-            </q-avatar>
-            <q-badge
-              class="q-mt-sm"
-              :label="`${discountPercentage} %`"
-              color="orange"
-              text-color="black"
-            />
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label>
-              <nuxt-link :to="`/product/${id}`">{{ title }}</nuxt-link>
-            </q-item-label>
-            <q-item-label caption>{{ description }}</q-item-label>
-            <q-item-label>{{ price }} Rub</q-item-label>
-          </q-item-section>
-
-          <q-item-section side center>
-            <q-btn
-              push
-              color="red"
-              text-color="white"
-              label="Удалить"
-              @click="removeFromBasket(id)"
-            />
-            <q-input type="number" class="input-count" filled label="Кол-во" />
-          </q-item-section>
-        </q-item>
+        <basket-item
+          :product="item"
+          @remove-from-basket="removeFromBasket($event)"
+        />
         <q-separator spaced />
       </template>
       <q-item-section class="items-center text-body1 text-green-6 text-bold">
@@ -59,21 +21,26 @@
 </template>
 
 <script setup lang="ts">
+import BasketItem from "~/components/BasketItem.vue";
+
 const { isModalOpen } = useModal();
 const { basketStorage, removeFromBasket } = useBasket();
 
 const totalSum = computed(() => {
-  return basketStorage.value.reduce((acc, val) => acc + val.price, 0);
+  return basketStorage.value.reduce(
+    (acc, val) => acc + val.price * val.buyCount,
+    0
+  );
 });
+
+function modalHide() {
+  localStorage.setItem("testBasket", JSON.stringify(basketStorage.value));
+}
 </script>
 
 <style scoped>
 .products-list {
   position: relative;
   background-color: #fff;
-}
-
-.input-count {
-  width: 100px;
 }
 </style>
